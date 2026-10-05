@@ -1,0 +1,388 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Juniper Salon · Filling the chair after a cancellation</title>
+    <style>
+      @page {
+        size: 13.333in 7.5in;
+        margin: 0;
+      }
+      :root {
+        --bg: #f6f3ee;
+        --ink: #1f1a17;
+        --muted: #6f665f;
+        --line: #e6dfd6;
+        --accent: #2f6f5e;
+        --accent-soft: #e3f0eb;
+        --warn-soft: #fbefd6;
+        --warn: #8a5a12;
+        --danger-soft: #f7e4e0;
+        --danger: #a43d2f;
+      }
+      * {
+        box-sizing: border-box;
+      }
+      html,
+      body {
+        margin: 0;
+        padding: 0;
+        background: #ddd;
+        font-family: "Segoe UI", system-ui, -apple-system, sans-serif;
+        color: var(--ink);
+        line-height: 1.4;
+      }
+      .slide {
+        width: 1280px;
+        height: 720px;
+        background: var(--bg);
+        padding: 56px 64px;
+        position: relative;
+        page-break-after: always;
+        break-after: page;
+        overflow: hidden;
+        margin: 0 auto;
+      }
+      @media screen {
+        .slide {
+          margin: 24px auto;
+          box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+        }
+      }
+      .eyebrow {
+        margin: 0 0 6px;
+        font-size: 13px;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: var(--accent);
+        font-weight: 700;
+      }
+      h1 {
+        margin: 0 0 8px;
+        font-size: 44px;
+        line-height: 1.1;
+        letter-spacing: -0.01em;
+        font-weight: 700;
+      }
+      h2 {
+        margin: 0 0 18px;
+        font-size: 34px;
+        line-height: 1.15;
+        letter-spacing: -0.01em;
+        font-weight: 700;
+      }
+      h3 {
+        margin: 0 0 6px;
+        font-size: 19px;
+        font-weight: 700;
+      }
+      p,
+      li {
+        font-size: 17px;
+        margin: 0;
+      }
+      .muted {
+        color: var(--muted);
+      }
+      .sub {
+        font-size: 20px;
+        color: var(--muted);
+        margin-bottom: 28px;
+      }
+      .cols {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 28px;
+      }
+      .card {
+        background: #fff;
+        border: 1px solid var(--line);
+        border-radius: 16px;
+        padding: 20px 22px;
+      }
+      .card.accent {
+        background: var(--accent-soft);
+        border-color: #cfe2da;
+      }
+      .card.warn {
+        background: var(--warn-soft);
+        border-color: #efdcb7;
+      }
+      ul {
+        margin: 6px 0 0;
+        padding-left: 20px;
+      }
+      li + li {
+        margin-top: 8px;
+      }
+      ol.steps {
+        list-style: none;
+        counter-reset: step;
+        margin: 0;
+        padding: 0;
+      }
+      ol.steps li {
+        counter-increment: step;
+        position: relative;
+        padding-left: 44px;
+        margin-bottom: 12px;
+      }
+      ol.steps li::before {
+        content: counter(step);
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        background: var(--accent);
+        color: #fff;
+        font-weight: 700;
+        font-size: 15px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .quote {
+        position: absolute;
+        left: 64px;
+        right: 64px;
+        bottom: 48px;
+        padding: 18px 24px;
+        border-left: 5px solid var(--accent);
+        background: #fff;
+        border-radius: 0 14px 14px 0;
+        font-size: 19px;
+        font-style: italic;
+      }
+      .quote span {
+        display: block;
+        margin-top: 6px;
+        font-style: normal;
+        font-size: 14px;
+        color: var(--muted);
+      }
+      .footer {
+        position: absolute;
+        left: 64px;
+        right: 64px;
+        bottom: 28px;
+        display: flex;
+        justify-content: space-between;
+        font-size: 12px;
+        color: var(--muted);
+      }
+      .flow {
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
+        gap: 12px;
+        margin-bottom: 20px;
+      }
+      .flow .card {
+        padding: 14px 16px;
+        min-height: 150px;
+      }
+      .flow .n {
+        display: inline-block;
+        width: 26px;
+        height: 26px;
+        border-radius: 50%;
+        background: var(--accent);
+        color: #fff;
+        font-weight: 700;
+        font-size: 14px;
+        text-align: center;
+        line-height: 26px;
+        margin-bottom: 8px;
+      }
+      .flow h3 {
+        font-size: 16px;
+      }
+      .flow p {
+        font-size: 14px;
+        color: var(--muted);
+      }
+      .shot {
+        width: 100%;
+        border-radius: 12px;
+        border: 1px solid var(--line);
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+        display: block;
+      }
+      .grid4 {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 18px;
+      }
+      .grid4 .card p {
+        font-size: 15px;
+      }
+      .engine {
+        margin-top: 18px;
+        font-size: 15px;
+        color: var(--muted);
+      }
+      .badge {
+        display: inline-block;
+        padding: 2px 10px;
+        border-radius: 999px;
+        font-size: 12px;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.06em;
+        margin-bottom: 10px;
+      }
+      .badge.sim {
+        background: var(--warn-soft);
+        color: var(--warn);
+      }
+      .badge.out {
+        background: var(--danger-soft);
+        color: var(--danger);
+      }
+      .badge.go {
+        background: var(--accent-soft);
+        color: var(--accent);
+      }
+      .big {
+        font-size: 22px;
+        margin-bottom: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- 1. The problem -->
+    <section class="slide">
+      <p class="eyebrow">Juniper Salon · a prototype for Lena</p>
+      <h1>Filling the chair after a cancellation</h1>
+      <p class="sub">Fewer empty chairs, and no more chasing people by text.</p>
+      <div class="cols">
+        <div class="card">
+          <h3>How it works today</h3>
+          <ol class="steps">
+            <li>A cancellation shows up in Square.</li>
+            <li>Lena or Carla look through the Google Sheet of people who asked for an earlier appointment.</li>
+            <li>Several likely matches are texted at once from the salon phone, and whoever is watching the phone sorts out the replies.</li>
+          </ol>
+        </div>
+        <div class="card warn">
+          <h3>What goes wrong</h3>
+          <ul>
+            <li>Nobody records who was texted or when, so follow-up is guesswork.</li>
+            <li>Two people say yes to the same chair, and untangling it depends on who is at the desk.</li>
+            <li>When nobody answers, the gap is noticed late or not at all, and the chair stays empty.</li>
+            <li>Time at the front desk goes to texting instead of clients.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="quote">
+        “I’d be nervous about it offering the same opening to two people, or continuing after the opening is no longer available.”
+        <span>Lena, on what would make her distrust an automated version</span>
+      </div>
+    </section>
+
+    <!-- 2. What the prototype does -->
+    <section class="slide">
+      <p class="eyebrow">The prototype</p>
+      <h2>One opening, one orderly conversation at a time</h2>
+      <div class="flow">
+        <div class="card"><span class="n">1</span><h3>Staff enter the opening</h3><p>Service, stylist, and time. The screen shows who will be contacted and in what order before you start.</p></div>
+        <div class="card"><span class="n">2</span><h3>Clients are ranked</h3><p>Same service only. A “required” stylist is respected. People who asked for this stylist go first, then whoever has waited longest.</p></div>
+        <div class="card"><span class="n">3</span><h3>One text at a time</h3><p>The first person gets 15 minutes for a same-day opening (60 otherwise). A live countdown shows on the dashboard.</p></div>
+        <div class="card"><span class="n">4</span><h3>Yes, no, or silence</h3><p>YES: confirmation text, chair held. NO or no reply: the next person is texted, and they stay on the waitlist.</p></div>
+        <div class="card"><span class="n">5</span><h3>Staff finish in Square</h3><p>Book the accepted client as today. If they change their mind, one click withdraws them and resumes the search.</p></div>
+      </div>
+      <img class="shot" src="dashboard.png" alt="The front-desk dashboard: a filled opening, the ordered client list with outcomes, and the simulated client phone" style="height: 318px; object-fit: cover; object-position: top" />
+      <div class="footer"><span>Front-desk dashboard from the prototype. Names and numbers are fictional.</span><span>2 / 5</span></div>
+    </section>
+
+    <!-- 3. Guarantees -->
+    <section class="slide">
+      <p class="eyebrow">Why it cannot go wrong the way you feared</p>
+      <h2>Four things the system guarantees</h2>
+      <div class="grid4">
+        <div class="card accent">
+          <h3>Never two offers at once</h3>
+          <p>Each opening is a single process that holds exactly one offer at a time. A late YES from someone whose turn has passed is refused automatically, with a polite “sorry, already taken” text, and the person who holds the offer is unaffected.</p>
+        </div>
+        <div class="card accent">
+          <h3>Nobody has to watch the phone</h3>
+          <p>Every offer has a countdown. When it runs out, the next person is texted without anyone noticing or remembering. The windows never run past the appointment time itself.</p>
+        </div>
+        <div class="card accent">
+          <h3>Stops the moment the opening is gone</h3>
+          <p>“Cancel opening” ends the process instantly and tells whoever held the offer. If the appointment time arrives first, it stops by itself. Nothing is ever sent for a dead opening.</p>
+        </div>
+        <div class="card accent">
+          <h3>Nothing gets lost</h3>
+          <p>Every text, reply, skip, and decision is recorded against the opening. The front desk always sees who holds the offer and who is next, and if a computer restarts the process carries on where it left off.</p>
+        </div>
+      </div>
+      <div class="cols" style="margin-top: 16px; grid-template-columns: 1.1fr 1fr; align-items: start">
+        <p class="engine" style="margin: 0">Underneath, the engine is <strong>Temporal</strong>: it keeps each opening’s state safe, runs the timers, delivers replies to the right process, and makes sure every step happens exactly once. On the right: Temporal’s own history of the demo run, where Maya’s timer fired, her late yes was answered, and Priya’s acceptance cancelled the countdown and sent the confirmation.</p>
+        <img class="shot" src="temporal-history.png" alt="Temporal Web UI event history for the demo opening" style="height: 196px; object-fit: cover; object-position: top" />
+      </div>
+      <div class="footer"><span>Juniper Salon prototype</span><span>3 / 5</span></div>
+    </section>
+
+    <!-- 4. Simulated or excluded -->
+    <section class="slide">
+      <p class="eyebrow">Being honest about the prototype</p>
+      <h2>What is simulated, and what is not built yet</h2>
+      <div class="cols">
+        <div class="card">
+          <span class="badge sim">Simulated</span>
+          <ul>
+            <li><strong>Text messages</strong> are not really sent. They appear in an on-screen “client phone” so we can act as the client. Connecting a real texting service is a small, contained change.</li>
+            <li><strong>Square and the Google Sheet</strong> are replaced by a built-in sample waitlist of eight fictional clients. Staff enter openings by hand instead of Square announcing them.</li>
+            <li><strong>Booking in Square</strong> stays manual, exactly as today. The system just tells you when to do it.</li>
+          </ul>
+        </div>
+        <div class="card">
+          <span class="badge out">Not built yet</span>
+          <ul>
+            <li>Stopping one client from holding offers for two different openings at the same time.</li>
+            <li>A “pause and handle this one by hand” mode. Today you can skip, record a reply yourself, or cancel.</li>
+            <li>Adding or editing waitlist clients inside the app.</li>
+            <li>Using each client’s general availability to filter, rather than just showing it to staff.</li>
+            <li>Reports after the fact: chairs filled, response times, no-shows.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer"><span>Juniper Salon prototype</span><span>4 / 5</span></div>
+    </section>
+
+    <!-- 5. Next step -->
+    <section class="slide">
+      <p class="eyebrow">A practical next step</p>
+      <h2>A two-week pilot with Carla’s clients</h2>
+      <p class="big">Small enough to switch off in an afternoon, real enough to learn from.</p>
+      <div class="cols">
+        <div class="card">
+          <span class="badge go">The pilot</span>
+          <ol class="steps">
+            <li>Connect real texting on one salon number, for Carla’s waitlist only (about 20 people).</li>
+            <li>Lena or Carla enter openings by hand when a cancellation lands; Square booking stays manual.</li>
+            <li>Keep the 15-minute window for same-day openings and 60 minutes otherwise, and adjust after week one.</li>
+            <li>Afterwards, connect Square so openings are created automatically.</li>
+          </ol>
+        </div>
+        <div class="card">
+          <span class="badge go">What we measure</span>
+          <ul>
+            <li>Chairs filled vs. left empty, compared with the two weeks before.</li>
+            <li>Minutes the front desk spends on cancellations each day.</li>
+            <li>Double-offer incidents. Target: zero.</li>
+            <li>How often clients reply within the window, to tune the timing.</li>
+          </ul>
+          <h3 style="margin-top: 18px">What we need from you</h3>
+          <ul>
+            <li>Carla’s current waitlist, with “required” or “preferred” marked per client.</li>
+            <li>A yes on the wording of the four text messages.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer"><span>Juniper Salon prototype</span><span>5 / 5</span></div>
+    </section>
+  </body>
+</html>
