@@ -43,7 +43,7 @@ export const getOpeningStatus = defineQuery<OpeningStatus>("getOpeningStatus");
 const texts = {
   offer: (name: string, service: string, stylist: string, when: string, minutes: number) =>
     `Hi ${name}, this is Juniper Salon. A ${service} with ${stylist} just opened on ${when}. ` +
-    `Reply YES to take it or NO to pass. We'll hold it for you for ${minutes} minutes.`,
+    `Reply YES to take it or NO to pass. We'll hold it for you for ${minutes} ${minutes === 1 ? "minute" : "minutes"}.`,
   confirmation: (service: string, stylist: string, when: string) =>
     `You're booked! ${service} with ${stylist}, ${when}. See you at Juniper Salon.`,
   withdrawn: (name: string, when: string) =>
