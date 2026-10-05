@@ -3,31 +3,86 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Temporal assessment starter</title>
+    <title>Juniper Salon · Open chairs</title>
     <link rel="stylesheet" href="/styles.css" />
   </head>
   <body>
-    <main>
-      <p class="eyebrow">Temporal assessment starter</p>
-      <h1>Your environment is connected.</h1>
-      <p class="intro">
-        This neutral demonstration starts a Workflow, waits durably for a
-        Signal, and then completes. Replace it with the experience your
-        customer needs.
+    <header class="topbar">
+      <div>
+        <p class="eyebrow">Juniper Salon · front desk</p>
+        <h1>Open chairs</h1>
+      </div>
+      <p class="topbar-note">
+        Each opening is one Temporal Workflow. Inspect it at
+        <a href="http://localhost:8233" target="_blank" rel="noreferrer">localhost:8233</a>.
       </p>
-      <section class="card">
-        <h2 id="phase">Ready</h2>
-        <p id="message">Start the demonstration to verify the setup.</p>
-        <button id="start">Start demo Workflow</button>
-        <button id="continue" hidden>Send continue Signal</button>
-        <p class="request-id" id="request-id"></p>
+    </header>
+
+    <main class="layout">
+      <aside class="column">
+        <section class="card">
+          <h2>New opening</h2>
+          <p class="muted">A cancellation just showed up in Square. Tell the system what opened.</p>
+          <form id="opening-form">
+            <label>
+              Service
+              <select id="service" required></select>
+            </label>
+            <label>
+              Stylist
+              <select id="stylist" required></select>
+            </label>
+            <label>
+              Starts
+              <input id="starts-at" type="datetime-local" required />
+            </label>
+            <label>
+              Offer window, minutes
+              <input id="offer-window" type="number" min="1" step="1" placeholder="auto: 15 same-day, 60 otherwise" />
+            </label>
+            <div id="candidate-preview" class="preview"></div>
+            <button type="submit" class="primary">Start filling this chair</button>
+            <p id="form-error" class="error" role="alert"></p>
+          </form>
+        </section>
+
+        <section class="card">
+          <h2>Openings</h2>
+          <ul id="openings" class="openings">
+            <li class="muted">No openings yet.</li>
+          </ul>
+        </section>
+      </aside>
+
+      <section class="column column-wide" id="detail">
+        <div class="card empty-state">
+          <h2>Pick an opening</h2>
+          <p class="muted">Create one on the left, or select one from the list, to see who holds the offer and who is next.</p>
+        </div>
       </section>
-      <p class="footer">
-        Inspect the execution at
-        <a href="http://localhost:8233" target="_blank">localhost:8233</a>.
-      </p>
+
+      <aside class="column">
+        <section class="card phone-card">
+          <h2>Client phone <span class="tag">simulated</span></h2>
+          <p class="muted">Texts are not really sent. Pick a client to see their phone and reply as them.</p>
+          <select id="phone-client" aria-label="Which client's phone to show"></select>
+          <div id="phone-screen" class="phone-screen">
+            <p class="muted">No messages yet.</p>
+          </div>
+          <div class="phone-actions">
+            <button id="reply-yes" class="primary">Reply YES</button>
+            <button id="reply-no">Reply NO</button>
+          </div>
+          <p id="phone-result" class="phone-result"></p>
+        </section>
+
+        <section class="card">
+          <h2>Waitlist <span class="tag">from the sheet</span></h2>
+          <table id="waitlist" class="waitlist"></table>
+        </section>
+      </aside>
     </main>
+
     <script src="/app.js"></script>
   </body>
 </html>
-
